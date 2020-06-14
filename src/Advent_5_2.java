@@ -53,6 +53,7 @@ public class Advent_5_2 {
             //System.out.println(Arrays.deepToString(bitState));
 
             switch (currOpcode) {
+                // add
                 case 1: {
                     int pos1 = 0;
                     int pos2 = 0;
@@ -102,7 +103,7 @@ public class Advent_5_2 {
 
                     break;
                 }
-
+                // multiply
                 case 2: {
                     int pos1 = 0;
                     int pos2 = 0;
@@ -154,7 +155,7 @@ public class Advent_5_2 {
 
                     break;
                 }
-
+                // store pointer
                 case 3: {
                     int pos1 = Integer.parseInt(input.get(instructionPointer + 1));
 
@@ -168,7 +169,7 @@ public class Advent_5_2 {
 
                     break;
                 }
-
+                // output pointer
                 case 4: {
                     int pos1 = Integer.parseInt(input.get(instructionPointer + 1));
 
@@ -182,22 +183,96 @@ public class Advent_5_2 {
 
                     break;
                 }
+                // jump if true
+                case 5: {
+                    int pos1 = Integer.parseInt(input.get(instructionPointer + 1));
+                    int pos2 = Integer.parseInt(input.get(instructionPointer + 2));
+
+                    if (pos1 != 0) {
+                        instructionPointer = pos2;
+                    }
+                    break;
+                }
+
+
+                // jump if false
+                case 6: {
+                    int pos1 = Integer.parseInt(input.get(instructionPointer + 1));
+                    int pos2 = Integer.parseInt(input.get(instructionPointer + 2));
+
+                    if (pos1 == 0) {
+                        instructionPointer = pos2;
+                    }
+                    break;
+                }
+
+                //less than
+                case 7: {
+                    int pos1 = Integer.parseInt((input.get(instructionPointer) + 1));
+                    int pos2 = Integer.parseInt((input.get(instructionPointer) + 1));
+                    int pos3 = Integer.parseInt((input.get(instructionPointer) + 1));
+
+                    int num1 = Integer.parseInt(input.get(pos3));
+
+                    if (pos1 < pos2) {
+                        if (bitState[2][0].matches("1")) {
+                            input.set(pos3, "1");
+                        } else {
+                            input.set(num1, "1");
+                        }
+
+                    } else {
+                        if (bitState[2][0].matches("0")) {
+                            input.set(pos3, "0");
+                        } else {
+                            input.set(num1, "0");
+                        }
+                    }
+
+                }
+
+                //greater than
+                case 8: {
+                    int pos1 = Integer.parseInt((input.get(instructionPointer) + 1));
+                    int pos2 = Integer.parseInt((input.get(instructionPointer) + 1));
+                    int pos3 = Integer.parseInt((input.get(instructionPointer) + 1));
+
+                    int num1 = Integer.parseInt(input.get(pos3));
+
+                    if (pos1 == pos2) {
+                        if (bitState[2][0].matches("1")) {
+                            input.set(pos3, "1");
+                        } else {
+                            input.set(num1, "1");
+                        }
+
+                    } else {
+                        if (bitState[2][0].matches("0")) {
+                            input.set(pos3, "0");
+                        } else {
+                            input.set(num1, "0");
+                        }
+                    }
+
+                }
 
                 case 99: {
                     piss = false;
                     break;
                 }
 
-                default:
+                default: {
                     System.out.println("Broken");
                     System.out.println(currOpcode);
                     System.exit(-1);
+                }
             }
         }
 
 
         System.out.println(input);
     }
+
 
     private static String getInput() {
         Scanner scan = new Scanner(System.in);
