@@ -39,8 +39,10 @@ public class Advent_5_1 {
 
             String[][] bitState = new String[3][2];
 
-            for (int i = 2; i >= 0; i--) {
-                bitState[i][1] = String.valueOf(currBytecode.charAt(i));
+            int j = 2;
+            for (int i = 0; i < 3; i++) {
+                bitState[i][1] = String.valueOf(currBytecode.charAt(j));
+                j--;
             }
 
 //            if (System.currentTimeMillis() > now + 5000) {
