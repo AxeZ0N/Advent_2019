@@ -1,3 +1,4 @@
+import javax.print.DocFlavor;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -55,49 +56,17 @@ public class Advent_5_2 {
             switch (currOpcode) {
                 // add
                 case 1: {
-                    int pos1 = 0;
-                    int pos2 = 0;
-                    int pos3 = 0;
-
-                    int num1 = 0;
-                    int num2 = 0;
-                    int num3 = 0;
-
-                    pos1 = Integer.parseInt(input.get(instructionPointer + 1));
-                    pos2 = Integer.parseInt(input.get(instructionPointer + 2));
-                    pos3 = Integer.parseInt(input.get(instructionPointer + 3));
-
-                    try {
-                        num1 = Integer.parseInt(input.get(Math.abs(pos1)));
-                    } catch (Exception e) {
-                        //e.printStackTrace();
-                    }
-                    try {
-                        num2 = Integer.parseInt(input.get(Math.abs(pos2)));
-                    } catch (Exception e) {
-                        //e.printStackTrace();
-                    }
-                    try {
-                        num3 = Integer.parseInt(input.get(Math.abs(pos3)));
-                    } catch (Exception e) {
-                        //e.printStackTrace();
-                    }
-
-                    int[] num = {num1, num2, num3};
-                    int[] pos = {pos1, pos2, pos3};
-
                     for (int i = 0; i < 3; i++) {
-                        if (bitState[i][1].matches("1")) {
-                            bitState[i][0] = String.valueOf(pos[i]);
+                        if( bitState[i][1].matches("1") ){
+                            bitState[i][0] = input.get(instructionPointer + i);
                         } else {
-                            bitState[i][0] = String.valueOf(num[i]);
+                            bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i) ) );
                         }
                     }
 
-
                     String tempSum = String.valueOf(Integer.parseInt(bitState[0][0]) + Integer.parseInt(bitState[1][0]));
 
-                    input.set(pos3, tempSum);
+                    input.set(Integer.parseInt( bitState[2][0] ), tempSum);
 
                     instructionPointer += 4;
 
@@ -105,51 +74,17 @@ public class Advent_5_2 {
                 }
                 // multiply
                 case 2: {
-                    int pos1 = 0;
-                    int pos2 = 0;
-                    int pos3 = 0;
-
-                    int num1 = 0;
-                    int num2 = 0;
-                    int num3 = 0;
-
-
-                    pos1 = Integer.parseInt(input.get(instructionPointer + 1));
-                    pos2 = Integer.parseInt(input.get(instructionPointer + 2));
-                    pos3 = Integer.parseInt(input.get(instructionPointer + 3));
-
-
-                    try {
-                        num1 = Integer.parseInt(input.get(Math.abs(pos1)));
-                    } catch (Exception e) {
-                        //e.printStackTrace();
-                    }
-                    try {
-                        num2 = Integer.parseInt(input.get(Math.abs(pos2)));
-                    } catch (Exception e) {
-                        //e.printStackTrace();
-                    }
-                    try {
-                        num3 = Integer.parseInt(input.get(Math.abs(pos3)));
-                    } catch (Exception e) {
-                        //e.printStackTrace();
-                    }
-
-                    int[] num = {num1, num2, num3};
-                    int[] pos = {pos1, pos2, pos3};
-
                     for (int i = 0; i < 3; i++) {
-                        if (bitState[i][1].matches("1")) {
-                            bitState[i][0] = String.valueOf(pos[i]);
+                        if( bitState[i][1].matches("1") ){
+                            bitState[i][0] = input.get(instructionPointer + i);
                         } else {
-                            bitState[i][0] = String.valueOf(num[i]);
+                            bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i) ) );
                         }
                     }
 
-
                     String tempSum = String.valueOf(Integer.parseInt(bitState[0][0]) * Integer.parseInt(bitState[1][0]));
 
-                    input.set(pos3, tempSum);
+                    input.set(Integer.parseInt( bitState[2][0] ), tempSum);
 
                     instructionPointer += 4;
 
@@ -173,8 +108,6 @@ public class Advent_5_2 {
                 case 4: {
                     int pos1 = Integer.parseInt(input.get(instructionPointer + 1));
 
-                    int num1 = Integer.parseInt(input.get(pos1));
-
                     String output = input.get(pos1);
                     System.out.print("pointer: " + instructionPointer + " output: ");
                     System.out.println(output);
@@ -185,74 +118,84 @@ public class Advent_5_2 {
                 }
                 // jump if true
                 case 5: {
-                    int pos1 = Integer.parseInt(input.get(instructionPointer + 1));
-                    int pos2 = Integer.parseInt(input.get(instructionPointer + 2));
-
-                    if (pos1 != 0) {
-                        instructionPointer = pos2;
+                    for (int i = 0; i < 3; i++) {
+                        if( bitState[i][1].matches("1") ){
+                            bitState[i][0] = input.get(instructionPointer + i);
+                        } else {
+                            bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i) ) );
+                        }
                     }
+
+                    if( !bitState[0][0].matches("0")) {
+                        instructionPointer = Integer.parseInt(bitState[1][0]);
+                    }
+
+                    instructionPointer += 2;
+
                     break;
                 }
 
 
                 // jump if false
                 case 6: {
-                    int pos1 = Integer.parseInt(input.get(instructionPointer + 1));
-                    int pos2 = Integer.parseInt(input.get(instructionPointer + 2));
-
-                    if (pos1 == 0) {
-                        instructionPointer = pos2;
+                    for (int i = 0; i < 3; i++) {
+                        if( bitState[i][1].matches("1") ){
+                            bitState[i][0] = input.get(instructionPointer + i);
+                        } else {
+                            bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i) ) );
+                        }
                     }
+
+                    if( bitState[0][0].matches("0")) {
+                        instructionPointer = Integer.parseInt(bitState[1][0]);
+                    }
+
+                    instructionPointer += 2;
+
                     break;
                 }
 
                 //less than
                 case 7: {
-                    int pos1 = Integer.parseInt((input.get(instructionPointer) + 1));
-                    int pos2 = Integer.parseInt((input.get(instructionPointer) + 1));
-                    int pos3 = Integer.parseInt((input.get(instructionPointer) + 1));
-
-                    int num1 = Integer.parseInt(input.get(pos3));
-
-                    if (pos1 < pos2) {
-                        if (bitState[2][0].matches("1")) {
-                            input.set(pos3, "1");
+                    for (int i = 0; i < 3; i++) {
+                        if( bitState[i][1].matches("1") ){
+                            bitState[i][0] = input.get(instructionPointer + i);
                         } else {
-                            input.set(num1, "1");
-                        }
-
-                    } else {
-                        if (bitState[2][0].matches("0")) {
-                            input.set(pos3, "0");
-                        } else {
-                            input.set(num1, "0");
+                            bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i) ) );
                         }
                     }
+
+                    if( Integer.parseInt( bitState[0][0] ) < Integer.parseInt( bitState[1][0] ) ){
+                        input.set(Integer.parseInt(bitState[2][0]), "1" );
+                    } else {
+                        input.set(Integer.parseInt(bitState[2][0]), "0" );
+                    }
+
+                    instructionPointer += 4;
+
+                    break;
 
                 }
 
-                //greater than
+                //equal
                 case 8: {
-                    int pos1 = Integer.parseInt((input.get(instructionPointer) + 1));
-                    int pos2 = Integer.parseInt((input.get(instructionPointer) + 1));
-                    int pos3 = Integer.parseInt((input.get(instructionPointer) + 1));
-
-                    int num1 = Integer.parseInt(input.get(pos3));
-
-                    if (pos1 == pos2) {
-                        if (bitState[2][0].matches("1")) {
-                            input.set(pos3, "1");
+                    for (int i = 0; i < 3; i++) {
+                        if( bitState[i][1].matches("1") ){
+                            bitState[i][0] = input.get(instructionPointer + i);
                         } else {
-                            input.set(num1, "1");
-                        }
-
-                    } else {
-                        if (bitState[2][0].matches("0")) {
-                            input.set(pos3, "0");
-                        } else {
-                            input.set(num1, "0");
+                            bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i) ) );
                         }
                     }
+
+                    if( Integer.parseInt( bitState[0][0] ) == Integer.parseInt( bitState[1][0] ) ){
+                        input.set(Integer.parseInt(bitState[2][0]), "1" );
+                    } else {
+                        input.set(Integer.parseInt(bitState[2][0]), "0" );
+                    }
+
+                    instructionPointer += 4;
+
+                    break;
 
                 }
 
