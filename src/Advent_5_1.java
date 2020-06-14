@@ -62,14 +62,23 @@ public class Advent_5_1 {
                     int num2 = 0;
                     int num3 = 0;
 
-                    try{
-                      pos1 = Integer.parseInt(input.get(instructionPointer + 1));
-                      pos2 = Integer.parseInt(input.get(instructionPointer + 2));
-                      pos3 = Integer.parseInt(input.get(instructionPointer + 3));
-                      num1 = Integer.parseInt(input.get(Math.abs( pos1 )));
-                      num2 = Integer.parseInt(input.get(Math.abs( pos2 )));
-                      num3 = Integer.parseInt(input.get(Math.abs( pos3 )));
-                    } catch (Exception e){
+                    pos1 = Integer.parseInt(input.get(instructionPointer + 1));
+                    pos2 = Integer.parseInt(input.get(instructionPointer + 2));
+                    pos3 = Integer.parseInt(input.get(instructionPointer + 3));
+
+                    try {
+                        num1 = Integer.parseInt(input.get(Math.abs(pos1)));
+                    } catch (Exception e) {
+                        //e.printStackTrace();
+                    }
+                    try {
+                        num2 = Integer.parseInt(input.get(Math.abs(pos2)));
+                    } catch (Exception e) {
+                        //e.printStackTrace();
+                    }
+                    try {
+                        num3 = Integer.parseInt(input.get(Math.abs(pos3)));
+                    } catch (Exception e) {
                         //e.printStackTrace();
                     }
 
@@ -103,16 +112,28 @@ public class Advent_5_1 {
                     int num2 = 0;
                     int num3 = 0;
 
-                    try{
-                        pos1 = Integer.parseInt(input.get(instructionPointer + 1));
-                        pos2 = Integer.parseInt(input.get(instructionPointer + 2));
-                        pos3 = Integer.parseInt(input.get(instructionPointer + 3));
-                        num1 = Integer.parseInt(input.get(Math.abs( pos1 )));
-                        num2 = Integer.parseInt(input.get(Math.abs( pos2 )));
-                        num3 = Integer.parseInt(input.get(Math.abs( pos3 )));
-                    } catch (Exception e){
+
+                    pos1 = Integer.parseInt(input.get(instructionPointer + 1));
+                    pos2 = Integer.parseInt(input.get(instructionPointer + 2));
+                    pos3 = Integer.parseInt(input.get(instructionPointer + 3));
+
+
+                    try {
+                        num1 = Integer.parseInt(input.get(Math.abs(pos1)));
+                    } catch (Exception e) {
                         //e.printStackTrace();
                     }
+                    try {
+                        num2 = Integer.parseInt(input.get(Math.abs(pos2)));
+                    } catch (Exception e) {
+                        //e.printStackTrace();
+                    }
+                    try {
+                        num3 = Integer.parseInt(input.get(Math.abs(pos3)));
+                    } catch (Exception e) {
+                        //e.printStackTrace();
+                    }
+
                     int[] num = {num1, num2, num3};
                     int[] pos = {pos1, pos2, pos3};
 
