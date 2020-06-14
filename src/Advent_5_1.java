@@ -23,7 +23,7 @@ public class Advent_5_1 {
 
         while (piss) {
 
-            String wholeCode = input.get(0);
+            String wholeCode = input.get(instructionPointer);
 
             StringBuilder sb = new StringBuilder("0000");
             sb.append(wholeCode);
@@ -34,8 +34,8 @@ public class Advent_5_1 {
             int currOpcode = Integer.parseInt(paddedCode.substring(3));
             String currBytecode = paddedCode.substring(0, 3);
 
-            System.out.println(currOpcode);
-            System.out.println(currBytecode);
+            //System.out.println(currOpcode);
+            //System.out.println(currBytecode);
 
             String[][] bitState = new String[3][2];
 
@@ -43,22 +43,33 @@ public class Advent_5_1 {
                 bitState[i][1] = String.valueOf(currBytecode.charAt(i));
             }
 
-            if (System.currentTimeMillis() > now + 5000) {
-                System.out.println("...");
-                now = System.currentTimeMillis();
-            }
+//            if (System.currentTimeMillis() > now + 5000) {
+//                System.out.println("...");
+//                now = System.currentTimeMillis();
+//            }
 
-            System.out.println(Arrays.deepToString(bitState));
+            //System.out.println(Arrays.deepToString(bitState));
 
             switch (currOpcode) {
                 case 1: {
-                    int pos1 = Integer.parseInt(input.get(instructionPointer + 1));
-                    int pos2 = Integer.parseInt(input.get(instructionPointer + 2));
-                    int pos3 = Integer.parseInt(input.get(instructionPointer + 3));
+                    int pos1 = 0;
+                    int pos2 = 0;
+                    int pos3 = 0;
 
-                    int num1 = Integer.parseInt(input.get(pos1));
-                    int num2 = Integer.parseInt(input.get(pos2));
-                    int num3 = Integer.parseInt(input.get(pos3));
+                    int num1 = 0;
+                    int num2 = 0;
+                    int num3 = 0;
+
+                    try{
+                      pos1 = Integer.parseInt(input.get(instructionPointer + 1));
+                      pos2 = Integer.parseInt(input.get(instructionPointer + 2));
+                      pos3 = Integer.parseInt(input.get(instructionPointer + 3));
+                      num1 = Integer.parseInt(input.get(Math.abs( pos1 )));
+                      num2 = Integer.parseInt(input.get(Math.abs( pos2 )));
+                      num3 = Integer.parseInt(input.get(Math.abs( pos3 )));
+                    } catch (Exception e){
+                        //e.printStackTrace();
+                    }
 
                     int[] num = {num1, num2, num3};
                     int[] pos = {pos1, pos2, pos3};
@@ -74,7 +85,7 @@ public class Advent_5_1 {
 
                     String tempSum = String.valueOf(Integer.parseInt(bitState[0][0]) + Integer.parseInt(bitState[1][0]));
 
-                    input.set(Integer.parseInt(bitState[2][0]), tempSum);
+                    input.set(pos3, tempSum);
 
                     instructionPointer += 4;
 
@@ -82,14 +93,24 @@ public class Advent_5_1 {
                 }
 
                 case 2: {
-                    int pos1 = Integer.parseInt(input.get(instructionPointer + 1));
-                    int pos2 = Integer.parseInt(input.get(instructionPointer + 2));
-                    int pos3 = Integer.parseInt(input.get(instructionPointer + 3));
+                    int pos1 = 0;
+                    int pos2 = 0;
+                    int pos3 = 0;
 
-                    int num1 = Integer.parseInt(input.get(pos1));
-                    int num2 = Integer.parseInt(input.get(pos2));
-                    int num3 = Integer.parseInt(input.get(pos3));
+                    int num1 = 0;
+                    int num2 = 0;
+                    int num3 = 0;
 
+                    try{
+                        pos1 = Integer.parseInt(input.get(instructionPointer + 1));
+                        pos2 = Integer.parseInt(input.get(instructionPointer + 2));
+                        pos3 = Integer.parseInt(input.get(instructionPointer + 3));
+                        num1 = Integer.parseInt(input.get(Math.abs( pos1 )));
+                        num2 = Integer.parseInt(input.get(Math.abs( pos2 )));
+                        num3 = Integer.parseInt(input.get(Math.abs( pos3 )));
+                    } catch (Exception e){
+                        //e.printStackTrace();
+                    }
                     int[] num = {num1, num2, num3};
                     int[] pos = {pos1, pos2, pos3};
 
@@ -104,7 +125,7 @@ public class Advent_5_1 {
 
                     String tempSum = String.valueOf(Integer.parseInt(bitState[0][0]) * Integer.parseInt(bitState[1][0]));
 
-                    input.set(Integer.parseInt(bitState[2][0]), tempSum);
+                    input.set(pos3, tempSum);
 
                     instructionPointer += 4;
 
@@ -131,7 +152,7 @@ public class Advent_5_1 {
                     int num1 = Integer.parseInt(input.get(pos1));
 
                     String output = input.get(pos1);
-
+                    System.out.print("pointer: " + instructionPointer + " output: ");
                     System.out.println(output);
 
                     instructionPointer += 2;
@@ -143,9 +164,12 @@ public class Advent_5_1 {
                     piss = false;
                     break;
                 }
-            }
 
-            currOpcode = Integer.parseInt(input.get(instructionPointer));
+                default:
+                    System.out.println("Broken");
+                    System.out.println(currOpcode);
+                    System.exit(-1);
+            }
         }
 
 
@@ -154,6 +178,7 @@ public class Advent_5_1 {
 
     private static String getInput() {
         Scanner scan = new Scanner(System.in);
+        System.out.println("Need input: ");
         return scan.next();
     }
 
