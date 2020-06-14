@@ -58,15 +58,15 @@ public class Advent_5_2 {
                 case 1: {
                     for (int i = 0; i < 3; i++) {
                         if( bitState[i][1].matches("1") ){
-                            bitState[i][0] = input.get(instructionPointer + i);
+                            bitState[i][0] = input.get(instructionPointer + i + 1);
                         } else {
-                            bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i) ) );
+                            bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i + 1) ) );
                         }
                     }
 
-                    String tempSum = String.valueOf(Integer.parseInt(bitState[0][0]) + Integer.parseInt(bitState[1][0]));
+                    String tempSum = String.valueOf( Integer.parseInt(bitState[0][0]) + Integer.parseInt(bitState[1][0]) );
 
-                    input.set(Integer.parseInt( bitState[2][0] ), tempSum);
+                    input.set(Integer.parseInt( input.get(instructionPointer + 3) ), tempSum);
 
                     instructionPointer += 4;
 
@@ -76,15 +76,15 @@ public class Advent_5_2 {
                 case 2: {
                     for (int i = 0; i < 3; i++) {
                         if( bitState[i][1].matches("1") ){
-                            bitState[i][0] = input.get(instructionPointer + i);
+                            bitState[i][0] = input.get(instructionPointer + i + 1);
                         } else {
-                            bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i) ) );
+                            bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i + 1) ) );
                         }
                     }
 
                     String tempSum = String.valueOf(Integer.parseInt(bitState[0][0]) * Integer.parseInt(bitState[1][0]));
 
-                    input.set(Integer.parseInt( bitState[2][0] ), tempSum);
+                    input.set(Integer.parseInt( input.get(instructionPointer + 3) ), tempSum);
 
                     instructionPointer += 4;
 
@@ -120,9 +120,9 @@ public class Advent_5_2 {
                 case 5: {
                     for (int i = 0; i < 3; i++) {
                         if( bitState[i][1].matches("1") ){
-                            bitState[i][0] = input.get(instructionPointer + i);
+                            bitState[i][0] = input.get(instructionPointer + i + 1);
                         } else {
-                            bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i) ) );
+                            bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i + 1) ) );
                         }
                     }
 
@@ -140,9 +140,9 @@ public class Advent_5_2 {
                 case 6: {
                     for (int i = 0; i < 3; i++) {
                         if( bitState[i][1].matches("1") ){
-                            bitState[i][0] = input.get(instructionPointer + i);
+                            bitState[i][0] = input.get(instructionPointer + i + 1);
                         } else {
-                            bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i) ) );
+                            bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i + 1) ) );
                         }
                     }
 
@@ -159,16 +159,18 @@ public class Advent_5_2 {
                 case 7: {
                     for (int i = 0; i < 3; i++) {
                         if( bitState[i][1].matches("1") ){
-                            bitState[i][0] = input.get(instructionPointer + i);
+                            bitState[i][0] = input.get(instructionPointer + i + 1);
                         } else {
-                            bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i) ) );
+                            bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i + 1) ) );
                         }
                     }
 
                     if( Integer.parseInt( bitState[0][0] ) < Integer.parseInt( bitState[1][0] ) ){
-                        input.set(Integer.parseInt(bitState[2][0]), "1" );
+                        input.set(Integer.parseInt( input.get(instructionPointer + 3) ), "1");
+
                     } else {
-                        input.set(Integer.parseInt(bitState[2][0]), "0" );
+                        input.set(Integer.parseInt( input.get(instructionPointer + 3) ), "0");
+
                     }
 
                     instructionPointer += 4;
@@ -181,16 +183,20 @@ public class Advent_5_2 {
                 case 8: {
                     for (int i = 0; i < 3; i++) {
                         if( bitState[i][1].matches("1") ){
-                            bitState[i][0] = input.get(instructionPointer + i);
+                            bitState[i][0] = input.get(instructionPointer + i + 1);
                         } else {
-                            bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i) ) );
+                            bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i + 1) ) );
                         }
                     }
 
+                    String first = bitState[0][0];
+                    String second = bitState[1][0];
+                    String third = bitState[2][0];
+
                     if( Integer.parseInt( bitState[0][0] ) == Integer.parseInt( bitState[1][0] ) ){
-                        input.set(Integer.parseInt(bitState[2][0]), "1" );
+                        input.set(Integer.parseInt( input.get(instructionPointer + 3) ), "1");
                     } else {
-                        input.set(Integer.parseInt(bitState[2][0]), "0" );
+                        input.set(Integer.parseInt( input.get(instructionPointer + 3) ), "0");
                     }
 
                     instructionPointer += 4;
