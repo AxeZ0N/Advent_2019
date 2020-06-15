@@ -131,12 +131,12 @@ public class Advent_5_2 {
                     int first = Integer.parseInt( bitState[0][0] );
                     int secoond = Integer.parseInt( bitState[1][0] );
 
-                    if (first == secoond) {
+                    if (first != 0) {
                         instructionPointer = Integer.parseInt(bitState[1][0]);
                         break;
                     }
 
-                    instructionPointer+=2;
+                    instructionPointer+=3;
 
                     break;
                 }
@@ -155,11 +155,11 @@ public class Advent_5_2 {
                     int first = Integer.parseInt( bitState[0][0] );
                     int secoond = Integer.parseInt( bitState[1][0] );
 
-                    if (first != secoond) {
+                    if (first == 0){
                         instructionPointer = Integer.parseInt(bitState[1][0]);
                         break;
                     }
-                    instructionPointer+=2;
+                    instructionPointer+=3;
                     break;
                 }
 
