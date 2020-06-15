@@ -118,19 +118,25 @@ public class Advent_5_2 {
                 }
                 // jump if true
                 case 5: {
-                    for (int i = 0; i < 3; i++) {
+                    for (int i = 0; i < 2; i++) {
                         if( bitState[i][1].matches("1") ){
                             bitState[i][0] = input.get(instructionPointer + i + 1);
                         } else {
-                            bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i + 1) ) );
+                            //bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i + 1) ) );
+                            int position =  Integer.parseInt( input.get( instructionPointer + i + 1));
+                            bitState[i][0] = input.get(position);
                         }
                     }
 
-                    if( !bitState[0][0].matches("0")) {
+                    int first = Integer.parseInt( bitState[0][0] );
+                    int secoond = Integer.parseInt( bitState[1][0] );
+
+                    if (first == secoond) {
                         instructionPointer = Integer.parseInt(bitState[1][0]);
+                        break;
                     }
 
-                    instructionPointer += 2;
+                    instructionPointer+=2;
 
                     break;
                 }
@@ -138,20 +144,22 @@ public class Advent_5_2 {
 
                 // jump if false
                 case 6: {
-                    for (int i = 0; i < 3; i++) {
-                        if( bitState[i][1].matches("1") ){
+                    for (int i = 0; i < 2; i++) {
+                        if (bitState[i][1].matches("1")) {
                             bitState[i][0] = input.get(instructionPointer + i + 1);
                         } else {
-                            bitState[i][0] = input.get( Integer.parseInt( input.get(instructionPointer + i + 1) ) );
+                            bitState[i][0] = input.get(Integer.parseInt(input.get(instructionPointer + i + 1)));
                         }
                     }
 
-                    if( bitState[0][0].matches("0")) {
+                    int first = Integer.parseInt( bitState[0][0] );
+                    int secoond = Integer.parseInt( bitState[1][0] );
+
+                    if (first != secoond) {
                         instructionPointer = Integer.parseInt(bitState[1][0]);
+                        break;
                     }
-
-                    instructionPointer += 2;
-
+                    instructionPointer+=2;
                     break;
                 }
 
@@ -217,9 +225,7 @@ public class Advent_5_2 {
                 }
             }
         }
-
-
-        System.out.println(input);
+        System.exit(0);
     }
 
 
