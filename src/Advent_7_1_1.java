@@ -38,19 +38,25 @@ public class Advent_7_1_1 {
                             currNum.add(String.valueOf(l));
                             currNum.add(String.valueOf(m));
 
-                            computers.get(0).changeFirstNumbers("0", currNum.get(0));
+                            computers.get(0).firstInput = "0";
+                            computers.get(0).secondInput = currNum.get(0);
                             computerOut.add(computers.get(0).mainFunction());
 
-                            computers.get(1).changeFirstNumbers(computerOut.get(0), currNum.get(1));
+
+                            computers.get(1).firstInput = computerOut.get(0);
+                            computers.get(1).secondInput = currNum.get(1);
                             computerOut.add(computers.get(1).mainFunction());
 
-                            computers.get(2).changeFirstNumbers(computerOut.get(1), currNum.get(2));
+                            computers.get(2).firstInput = computerOut.get(1);
+                            computers.get(2).secondInput = currNum.get(2);
                             computerOut.add(computers.get(2).mainFunction());
 
-                            computers.get(3).changeFirstNumbers(computerOut.get(2), currNum.get(3));
+                            computers.get(3).firstInput = computerOut.get(2);
+                            computers.get(3).secondInput = currNum.get(3);
                             computerOut.add(computers.get(3).mainFunction());
 
-                            computers.get(4).changeFirstNumbers(computerOut.get(3), currNum.get(4));
+                            computers.get(4).firstInput = computerOut.get(3);
+                            computers.get(4).secondInput = currNum.get(4);
                             computerOut.add(computers.get(4).mainFunction());
 
                             if(Integer.parseInt(computerOut.get(4)) > currMax){

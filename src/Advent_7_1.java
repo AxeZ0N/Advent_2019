@@ -7,9 +7,11 @@ import java.util.*;
 public class Advent_7_1 {
 
     public String path;
-    public String inputValue;
+    public String firstInput;
+    public String secondInput;
     public String phaseValue;
     List<String> input;
+    boolean flag = false;
 
     public String mainFunction(){
 
@@ -228,10 +230,15 @@ public class Advent_7_1 {
 
 
     private String getInput() {
-        return phaseValue;
+        if(!flag) {
+            flag = true;
+            return firstInput;
+        } else {
+            return secondInput;
+        }
     }
 
-    public static ArrayList<String> initInput(String path) {
+    public  ArrayList<String> initInput(String path) {
 
         String[] newInput = new String[0];
 
@@ -241,6 +248,8 @@ public class Advent_7_1 {
             e.printStackTrace();
         }
         ArrayList<String> input = new ArrayList<>(Arrays.asList(newInput));
+
+        this.input = input;
 
         return input;
     }
