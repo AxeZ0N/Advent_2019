@@ -113,7 +113,7 @@ public class Advent_7_1 {
 
                     instructionPointer += 2;
 
-                    break;
+                    return output;
                 }
                 // jump if true
                 case 5: {
