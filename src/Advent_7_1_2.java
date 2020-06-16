@@ -16,7 +16,7 @@ public class Advent_7_1_2 {
         }
         List<String> maxPhase = new ArrayList<>();
 
-        List<String> permutes = new Advent_7_1_2().permute("01234");
+        List<String> permutes = new Advent_7_1_2().permute("56789");
 
         System.out.println(permutes);
         System.out.println(permutes.size());
@@ -39,6 +39,10 @@ public class Advent_7_1_2 {
 
             List<String> currNum = new ArrayList<>(Arrays.asList(s.split("")));
             List<String> computerOut = new ArrayList<>();
+
+            for (int i = 0; i < 5; i++) {
+                computerOut.add("0");
+            }
 
             computers.get(0).firstInput = currNum.get(0);
             computers.get(1).firstInput = currNum.get(1);
