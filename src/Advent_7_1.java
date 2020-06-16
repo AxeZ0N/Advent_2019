@@ -234,6 +234,7 @@ public class Advent_7_1 {
             flag = true;
             return firstInput;
         } else {
+            flag = false;
             return secondInput;
         }
     }
